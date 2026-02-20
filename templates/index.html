@@ -2,58 +2,84 @@
 
 {% block container %}
 
-<div class="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 py-10 px-4">
+<div class="min-h-screen bg-gradient-to-br from-indigo-100 via-white to-indigo-200 py-10 px-6">
     
-<a href="#" class="font-medium text-fg-brand hover:underline">Read more</a>
-
-    
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8">
         
-        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">
-            Lista de Usuarios
-        </h1>
-
-        <div class="relative overflow-x-auto shadow-xl rounded-2xl border border-gray-200 bg-white">
+        <!-- Título -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-800">
+                Lista de Alumnos
+            </h1>
             
+            <a href="Alumnos" 
+               class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-xl shadow-md transition duration-300">
+                + Nuevo Alumno
+            </a>
+        </div>
+
+        <!-- Tabla -->
+        <div class="overflow-x-auto rounded-xl">
             <table class="w-full text-sm text-left text-gray-700">
                 
-                <thead class="text-xs uppercase bg-gray-800 text-white">
+                <thead class="bg-indigo-600 text-white uppercase text-xs tracking-wider">
                     <tr>
-                        <th class="px-6 py-4">Nombre</th>
-                        <th class="px-6 py-4">Apellido</th>
-                        <th class="px-6 py-4">Correo</th>
-                        <th class="px-6 py-4 text-center"></th>
+                        <th class="px-6 py-3 rounded-tl-xl">Nombre</th>
+                        <th class="px-6 py-3">Apellido</th>
+                        <th class="px-6 py-3">Correo</th>
+                        <th class="px-6 py-3 text-center">Editar</th>
+                        <th class="px-6 py-3 text-center">Detalles</th>
+                        <th class="px-6 py-3 rounded-tr-xl text-center">Eliminar</th>
                     </tr>
                 </thead>
 
                 <tbody class="divide-y divide-gray-200">
-                    
-                    <tr class="hover:bg-gray-50 transition duration-200">
-                        <td class="px-6 py-4 font-medium">Estefania</td>
-                        <td class="px-6 py-4">Arellano</td>
-                        <td class="px-6 py-4">estefania@email.com</td>
-                        <td class="px-6 py-4">
-                            <div class="flex justify-center gap-3">
-                                
-                                <a href="#" class="px-3 py-1 text-xs font-semibold bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition">
-                                    Detalles
-                                </a>
-
-                                <a href="#" class="px-3 py-1 text-xs font-semibold bg-yellow-100 text-yellow-700 rounded-lg hover:bg-yellow-200 transition">
-                                    Editar
-                                </a>
-
-                                <a href="#" class="px-3 py-1 text-xs font-semibold bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition">
-                                    Eliminar
-                                </a>
-
-                            </div>
+                    {% for alum in alumno %}
+                    <tr class="hover:bg-indigo-50 transition duration-200">
+                        
+                        <td class="px-6 py-4 font-semibold text-gray-800">
+                            {{ alum.nombre }}
                         </td>
-                    </tr>
+                        
+                        <td class="px-6 py-4">
+                            {{ alum.apaterno }}
+                        </td>
+                        
+                        <td class="px-6 py-4 text-gray-600">
+                            {{ alum.email }}
+                        </td>
 
+                        <!-- Editar -->
+                        <td class="px-6 py-4 text-center">
+                            <a href="modificar?id={{ alum.id }}" 
+                               class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-lg text-xs font-semibold transition">
+                                Editar
+                            </a>
+                        </td>
+
+                        <!-- Detalles -->
+                        <td class="px-6 py-4 text-center">
+                            <a href="detalles?id={{ alum.id }}" 
+                               class="bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded-lg text-xs font-semibold transition">
+                                Ver
+                            </a>
+                        </td>
+
+                        <!-- Eliminar -->
+                        <td class="px-6 py-4 text-center">
+                            <a href="eliminar?id={{ alum.id }}" 
+                               class="bg-rose-500 hover:bg-rose-600 text-white px-3 py-1 rounded-lg text-xs font-semibold transition">
+                                Eliminar
+                            </a>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
                 </tbody>
+
             </table>
         </div>
+
     </div>
 </div>
 

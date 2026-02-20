@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="w-full max-w-5xl space-y-6">
+<div class="flex h-screen justify-center items-center">
+    
+    <div class="flex flex-col items-center bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs 
+                md:flex-row md:max-w-xl w-full">
+
+        <div class="flex flex-col justify-between md:p-4 leading-normal w-full">
+            
+            <h5 class="mb-4 text-2xl font-bold tracking-tight text-heading">
+                Información del Usuario
+            </h5>
+
+            <div class="space-y-2 text-body">
+                <p><span class="font-semibold text-heading">Nombre:</span> {{ nombre }}</p>
+                <p><span class="font-semibold text-heading">Apellido Paterno:</span> {{ apaterno }}</p>
+                <p><span class="font-semibold text-heading">Email:</span> {{ correo }}</p>
+            </div>
+
+            <div class="mt-6">
+                <a href="{{ url_for('index') }}"
+                    class="inline-flex items-center w-auto text-body bg-neutral-secondary-medium box-border border border-default-medium 
+                            hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary 
+                            shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                        
+                        Regresar
+                        <svg class="w-4 h-4 ms-1.5 rtl:rotate-180 -me-0.5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 12H5m14 0-4 4m4-4-4-4"/>
+                        </svg>
+                    </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</div>
+
+{% endblock %}

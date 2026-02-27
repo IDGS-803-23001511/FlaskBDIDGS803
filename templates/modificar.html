@@ -1,9 +1,15 @@
 {% extends "layout.html" %} {% block container %} {% import "_macros.html" as macros %}
-<div class="w-full max-w-5xl space-y-6">
+
   <form action="" method="POST" novalidate class="max-w-sm mx-auto">
     {{ form.csrf_token }}
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
     <div class="mb-5">
+      {{ macros.camposNuevos(form.id, class="bg-neutral-secondary-medium
+      border border-default-medium text-heading text-sm rounded-base
+      focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs
+      placeholder:text-body") }}
+    </div>
+      <div class="mb-5">
       {{ macros.camposNuevos(form.nombre, class="bg-neutral-secondary-medium
       border border-default-medium text-heading text-sm rounded-base
       focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs
@@ -34,5 +40,4 @@
       Submit
     </button>
   </form>
-</div>
 {% endblock %}

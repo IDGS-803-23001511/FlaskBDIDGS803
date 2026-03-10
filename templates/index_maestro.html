@@ -1,0 +1,91 @@
+{% extends "layout.html" %} 
+{% block container %}
+
+<div class="w-full max-w-5xl space-y-6">
+
+  <div class="flex items-center justify-between">
+    <h1 class="text-2xl font-semibold text-heading">
+      LISTA DE MAESTROS
+    </h1>
+    <a 
+      href="Maestros"
+      class="inline-flex items-center gap-2 text-white bg-brand hover:bg-brand-strong shadow-md font-medium rounded-base text-sm px-4 py-2.5 transition duration-200"
+    >
+      NUEVO MAESTRO
+    </a>
+  </div>
+
+  <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-md rounded-xl border border-default">
+
+    <div class="p-4 border-b border-default">
+      <input
+        type="text"
+        class="block w-full max-w-sm py-2.5 px-4 bg-neutral-secondary-medium border border-default-medium text-sm rounded-lg focus:ring-brand focus:border-brand shadow-sm"
+        placeholder="Buscar maestro..."
+      />
+    </div>
+
+    <table class="w-full text-sm text-left text-body">
+      <thead class="text-xs uppercase tracking-wider bg-neutral-secondary-medium border-b border-default-medium">
+        <tr>
+          <th class="px-6 py-3 font-semibold">NOMBRE</th>
+          <th class="px-6 py-3 font-semibold">APELLIDOS</th>
+          <th class="px-6 py-3 font-semibold">ESPECIALIDAD</th>
+          <th class="px-6 py-3 font-semibold">CORREO</th>
+          <th class="px-6 py-3 font-semibold text-right">ACCIONES</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for maestro in maestros %}
+        <tr class="border-b border-default hover:bg-neutral-secondary-medium transition duration-150">
+          
+          <td class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+            {{ maestro.nombre }}
+          </td>
+
+          <td class="px-6 py-4">{{ maestro.apellidos }}</td>
+
+          <td class="px-6 py-4">{{ maestro.especialidad }}</td>
+
+          <td class="px-6 py-4 font-semibold">{{ maestro.email }}</td>
+
+          <td class="px-6 py-4">
+            <div class="flex justify-end gap-2">
+
+  <a 
+    href="{{ url_for('maestro_detalles', matricula=maestro.matricula) }}"
+    title="Ver"
+    class="flex items-center justify-center w-9 h-9 rounded-lg bg-blue-500 hover:bg-blue-600 text-white shadow-md transition duration-200"
+  >
+    👁
+  </a>
+
+  <a 
+    href="{{ url_for('maestro_modificar', matricula=maestro.matricula) }}"
+    title="Modificar"
+    class="flex items-center justify-center w-9 h-9 rounded-lg bg-amber-500 hover:bg-amber-600 text-white shadow-md transition duration-200"
+  >
+    ✏
+  </a>
+
+  <a 
+    href="{{ url_for('maestro_eliminar', matricula=maestro.matricula) }}"
+    title="Eliminar"
+    class="flex items-center justify-center w-9 h-9 rounded-lg bg-red-500 hover:bg-red-600 text-white shadow-md transition duration-200"
+  >
+    ✖
+  </a>
+
+            </div>
+          </td>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+{% endblock %}
